@@ -1,11 +1,15 @@
 using Toybox.WatchUi;
 using Toybox.Graphics;
+using Toybox.Application.Properties;
 
 class PowerwithzoneView extends DataFieldWithFiveValuesView {
 
+	var powerCalc;
+
     function initialize() {
     	DataFieldWithFiveValuesView.initialize();
-    	labelValue = Rez.Strings.label;
+    	setLabel();
+    	powerCalc = new PowerCalc();
     }
 
     // The given info object contains all the current workout information.
@@ -15,7 +19,31 @@ class PowerwithzoneView extends DataFieldWithFiveValuesView {
     function compute(info) {
         mainValue = "___";
         bottomRightValue = "_._z";
-        if(info has :currentHeartRate){
+        if(info has :currentPower && info.currentPower != null){
+        	mainValue = powerCalc.computeAveragePower(info.currentPower, 10).format("%d");
         }
     }
+    
+    function setLabel()
+    {
+    	switch (Properties.getValue("power_averaging")) {
+    		case 3:
+    			labelValue = Rez.Strings.w_3_sec;
+    			break;
+			case 5:
+				labelValue = Rez.Strings.w_5_sec;
+				break;
+			case 10:
+				labelValue = Rez.Strings.w_10_sec;
+				break;
+			case 30:
+				labelValue = Rez.Strings.w_30_sec;
+				break;
+    	}
+    }
+    (:test)
+function helloWorld2(logger) {
+    logger.debug("Hello World");
+    return true;
+}
 }

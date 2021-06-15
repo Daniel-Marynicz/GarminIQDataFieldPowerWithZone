@@ -1,0 +1,40 @@
+<settings>
+    <setting propertyKey="@Properties.FTP" title="@Strings.Function_Threshold_Power">
+        <settingConfig type="numeric" min="50" max="999" />
+    </setting>
+
+    <setting propertyKey="@Properties.power_averaging" title="@Strings.Power_averaging" prompt="@Strings.Power_averaging">
+        <settingConfig type="list" >
+        	<listEntry value="3">@Strings.Aaveraging3s</listEntry>
+        	<listEntry value="5" >@Strings.Aaveraging5s</listEntry>
+        	<listEntry value="10" >@Strings.Aaveraging10s</listEntry>
+        	<listEntry value="30" >@Strings.Aaveraging30s</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.zone1" title="@Strings.Zone_1_percent_FTP_upper_limit">
+        <settingConfig type="numeric" min="1" max="400" />
+    </setting>
+    <setting propertyKey="@Properties.zone2" title="@Strings.Zone_2_percent_FTP_upper_limit">
+        <settingConfig type="numeric" min="1" max="400" />
+    </setting>
+    <setting propertyKey="@Properties.zone3" title="@Strings.Zone_3_percent_FTP_upper_limit">
+        <settingConfig type="numeric" min="1" max="400" />
+    </setting>
+    <setting propertyKey="@Properties.zone4" title="@Strings.Zone_4_percent_FTP_upper_limit">
+        <settingConfig type="numeric" min="1" max="400" />
+    </setting>
+    <setting propertyKey="@Properties.zone5" title="@Strings.Zone_5_percent_FTP_upper_limit">
+        <settingConfig type="numeric" min="1" max="400" />
+    </setting>
+    <setting propertyKey="@Properties.zone6" title="@Strings.Zone_6_percent_FTP_upper_limit">
+        <settingConfig type="numeric" min="1" max="400" />
+    </setting>
+    <setting propertyKey="@Properties.lower_limitSS" title="@Strings.Sweet_Spot_zone_percent_FTP_lower_limit">
+        <settingConfig type="numeric" min="1" max="400" />
+    </setting>
+	<setting propertyKey="@Properties.upper_limitSS" title="@Strings.Sweet_Spot_zone_percent_FTP_upper_limit">
+        <settingConfig type="numeric" min="1" max="400" />
+    </setting>
+</settings>
+

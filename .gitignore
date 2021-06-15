@@ -1,2 +1,3 @@
 /bin/*.prg
 /bin/*.prg.debug.xml
+/bin/*.json

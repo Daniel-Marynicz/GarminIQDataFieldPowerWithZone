@@ -1,0 +1,12 @@
+<properties>
+    <property id="FTP" type="number">167</property>
+    <property id="power_averaging" type="number">10</property>
+    <property id="zone1" type="number">55</property>
+    <property id="zone2" type="number">75</property>
+    <property id="zone3" type="number">90</property>
+    <property id="zone4" type="number">105</property>
+    <property id="zone5" type="number">120</property>
+    <property id="zone6" type="number">150</property>
+    <property id="lower_limitSS" type="number">84</property>
+    <property id="upper_limitSS" type="number">97</property>
+</properties>

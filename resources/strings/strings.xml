@@ -1,5 +1,31 @@
 <strings>
     <string id="AppName">Power with zone</string>
-
     <string id="label">My Value</string>
+    <string id="Function_Threshold_Power">Function Threshold Power (FTP)</string>
+    <string id="Power_averaging">Power averaging</string>
+    <string id="Zone_1_percent_FTP_upper_limit">Zone 1 percent FTP upper limit</string>
+    <string id="Zone_2_percent_FTP_upper_limit">Zone 2 percent FTP upper limit</string>
+    <string id="Zone_3_percent_FTP_upper_limit">Zone 3 percent FTP upper limit</string>
+    <string id="Zone_4_percent_FTP_upper_limit">Zone 4 percent FTP upper limit</string>
+    <string id="Zone_5_percent_FTP_upper_limit">Zone 5 percent FTP upper limit</string>
+    <string id="Zone_6_percent_FTP_upper_limit">Zone 6 percent FTP upper limit</string>
+    <string id="Sweet_Spot_zone_percent_FTP_lower_limit">Sweet Spot zone percent FTP lower limit</string>
+    <string id="Sweet_Spot_zone_percent_FTP_upper_limit">Sweet Spot zone percent FTP upper limit</string>-->
+    <string id="Aaveraging3s">3s</string>
+    <string id="Aaveraging5s">5s</string>
+    <string id="Aaveraging10s">10s</string>
+    <string id="Aaveraging30s">30s</string>
+    <string id="Recovery">Recovery</string>
+    <string id="Endurance">Endurance</string>
+    <string id="Tempo">Tempo</string>
+    <string id="Threshold">Threshold</string>
+    <string id="VO2_Max">VO2 Max</string>
+    <string id="Anaerobic">Anaerobic</string>
+    <string id="Neuromuscular">Neuromuscular</string>
+    <string id="Sweet_Spot">SS</string>
+    <string id="w_3_sec">W 3 sec</string>
+    <string id="w_5_sec">W 5 sec</string>
+    <string id="w_10_sec">W 10 sec</string>
+    <string id="w_30_sec">W 30 sec</string>
+    
 </strings>
