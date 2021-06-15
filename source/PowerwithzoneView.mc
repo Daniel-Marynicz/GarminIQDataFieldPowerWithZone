@@ -41,9 +41,4 @@ class PowerwithzoneView extends DataFieldWithFiveValuesView {
 				break;
     	}
     }
-    (:test)
-function helloWorld2(logger) {
-    logger.debug("Hello World");
-    return true;
-}
 }
