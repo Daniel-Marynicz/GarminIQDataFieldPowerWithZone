@@ -1,5 +1,5 @@
 <properties>
-    <property id="FTP" type="number">170</property>
+    <property id="FTP" type="number">175</property>
     <property id="power_averaging" type="number">10</property>
     <property id="zone1" type="number">55</property>
     <property id="zone2" type="number">75</property>

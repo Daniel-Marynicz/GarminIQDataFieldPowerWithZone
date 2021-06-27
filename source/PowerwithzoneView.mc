@@ -1,21 +1,25 @@
 using Toybox.WatchUi;
 using Toybox.Graphics;
 using Toybox.Application.Properties;
+using Toybox.Activity;
 
 class PowerwithzoneView extends DataFieldWithFiveValuesView {
 
-	var powerCalc;
-	var powerZones;
-	var powerAveraging;
-	var ssZones;
+	protected var powerCalc;
+	protected var powerAveraging;
+	protected var computed = false;
 
     function initialize() {
     	DataFieldWithFiveValuesView.initialize();
     	setLabel();
-    	powerCalc = new PowerCalc();
-    	powerZones = computePowerZones();
-    	ssZones = computePowerSweetSpotZones();
+    	var ftp =  Properties.getValue("FTP").toNumber();
+
+    	powerCalc = new PowerCalc(ftp, computePercentPowerZones(), computePercentPowerSweetSpotZones());
     	powerAveraging = Properties.getValue("power_averaging").toNumber();
+    	
+    	mainValue = "___";
+        bottomRightValue = "_._z";
+        topRightValue = "__";
     }
 
     // The given info object contains all the current workout information.
@@ -23,24 +27,44 @@ class PowerwithzoneView extends DataFieldWithFiveValuesView {
     // Note that compute() and onUpdate() are asynchronous, and there is no
     // guarantee that compute() will be called before onUpdate().
     function compute(info) {
-        mainValue = "___";
-        bottomRightValue = "_._z";
-        topRightValue = "__";
         var avgPower;
         var zone;
+        var currentPower = null;
+        var isReset = false;
         if(info has :currentPower && info.currentPower != null){
-        	avgPower = powerCalc.computeAveragePower(info.currentPower, powerAveraging);
-        	zone = powerCalc.computeZone(avgPower, powerZones);
-
-        	if (zone > 0.0f) {
-        		bottomRightValue =  zone.format("%.1f") + "z";
+        	currentPower = info.currentPower;
+        } else if (computed) {
+        	currentPower = 0;
+        }
+        
+        if(currentPower != null && currentPower <= 0 && info has :timerState && info.timerState != null){
+        	switch (info.timerState) {
+        		case Activity.TIMER_STATE_STOPPED:
+        			powerCalc.resetAveragePower();
+        			isReset = true;
+        		break;
+        		case Activity.TIMER_STATE_PAUSED:
+        			powerCalc.resetAveragePower();
+        			isReset = true;
+        		break;
         	}
-        	if (avgPower > 0.0f) {
-	        	mainValue = avgPower.format("%d");
-        	}
-        	if (powerCalc.isSweetSpotZone(avgPower, ssZones)) {
+        }
+        
+        if (currentPower != null) {
+        	avgPower = powerCalc.computeAveragePower(currentPower, powerAveraging);
+        	zone = powerCalc.computeZone(avgPower);
+        	
+    		bottomRightValue =  zone.format("%.1f") + "z";
+        	mainValue = avgPower.format("%d");
+        	topRightValue = "";
+        	if (powerCalc.isSweetSpotZone(avgPower)) {
         		topRightValue = "SS";
         	}
+        	computed = true;
+        }
+        if (isReset) {
+        	// we do noo want to count zeros in avg power.
+        	powerCalc.resetAveragePower();
         }
     }
     
@@ -62,9 +86,9 @@ class PowerwithzoneView extends DataFieldWithFiveValuesView {
     	}
     }
     
-    function computePowerZones()
+    function computePercentPowerZones()
     {
-    	var powerZones = [0, 1, 2, 3, 4, 5];
+    	var powerZones = new [6];
     	//Zone 1 percent FTP upper limit
     	powerZones[0] = Properties.getValue("zone1");
     	//Zone 2 percent FTP upper limit
@@ -80,21 +104,19 @@ class PowerwithzoneView extends DataFieldWithFiveValuesView {
     	
     	var ftp =  Properties.getValue("FTP").toNumber();
 
-    	return powerCalc.computePowerZones(ftp, powerZones);
+    	return powerZones;
 
     }
     
-    function computePowerSweetSpotZones()
+    function computePercentPowerSweetSpotZones()
     {
     	var ssZone = [0, 1];
     	//Zone 1 percent FTP upper limit
     	ssZone[0] = Properties.getValue("lower_limitSS");
     	//Zone 2 percent FTP upper limit
     	ssZone[1] = Properties.getValue("upper_limitSS");
-    	
-    	var ftp =  Properties.getValue("FTP").toNumber();
-    	
-    	return powerCalc.computeSweetSpotPowerZones(ftp, powerZones);
+
+    	return ssZone;
     	
     }
 }
