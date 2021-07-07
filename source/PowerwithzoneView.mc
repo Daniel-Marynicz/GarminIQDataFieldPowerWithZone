@@ -11,15 +11,19 @@ class PowerwithzoneView extends DataFieldWithFiveValuesView {
 
     function initialize() {
     	DataFieldWithFiveValuesView.initialize();
-    	setLabel();
-    	var ftp =  Properties.getValue("FTP").toNumber();
-
-    	powerCalc = new PowerCalc(ftp, computePercentPowerZones(), computePercentPowerSweetSpotZones());
-    	powerAveraging = Properties.getValue("power_averaging").toNumber();
-    	
     	mainValue = "___";
         bottomRightValue = "_._z";
         topRightValue = "__";
+        
+        onSettingsChanged();
+    }
+    
+    function onSettingsChanged()
+    {
+    	setLabel();
+    	var ftp =  Properties.getValue("FTP").toNumber();
+    	powerCalc = new PowerCalc(ftp, computePercentPowerZones(), computePercentPowerSweetSpotZones());
+    	powerAveraging = Properties.getValue("power_averaging").toNumber();
     }
 
     // The given info object contains all the current workout information.
@@ -102,8 +106,6 @@ class PowerwithzoneView extends DataFieldWithFiveValuesView {
     	//Zone 6 percent FTP upper limit
     	powerZones[5] = Properties.getValue("zone6");
     	
-    	var ftp =  Properties.getValue("FTP").toNumber();
-
     	return powerZones;
 
     }
