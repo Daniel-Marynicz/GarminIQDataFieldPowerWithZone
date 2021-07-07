@@ -1,8 +1,15 @@
 # Power With Zone
 
-This Data Filed displays current average power and zone in one data field.
+This Data Filed displays current average power and zone for selected time in one data field.
 If data field is too small, then it only displays the current power without zone.
-If you are on Sweet Spot zone then on right corner you have info about this. 
+If you are on Sweet Spot zone then on right corner you have info about this.
+
+The data field supports the following settings through Garmin Express or the Garmin Mobile App:
+
+* Function Threshold Power (FTP)
+* Power averaging (3s, 5s, 10s, 30s)
+* Zones percent FTP upper limits
+* Sweet Spot Zone percent FTP lower and upper limit 
 
 ## What’s New
 
