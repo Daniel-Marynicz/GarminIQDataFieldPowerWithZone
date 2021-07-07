@@ -119,6 +119,5 @@ class PowerwithzoneView extends DataFieldWithFiveValuesView {
     	ssZone[1] = Properties.getValue("upper_limitSS");
 
     	return ssZone;
-    	
     }
 }
